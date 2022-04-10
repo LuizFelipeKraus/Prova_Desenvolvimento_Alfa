@@ -1,0 +1,34 @@
+questão 7
+select c.cpf, c.nome_colaborador, ci.nome_cidade, d.nome_departamento from tab_colaborador c
+left join tab_departamento_filial df on df.codigo_dep_filial =  c.fk_codigo_dep_filial
+left join tab_filial f on f.codigo_filial = df.fk_codigo_filial
+left join tab_cidade ci on ci.codigo_cidade = f.fk_codigo_cidade
+left join tab_departamento d on d.codigo_departamento = df.fk_codigo_departamento
+order by f.codigo_filial, c.nome_colaborador;
+
+questão 8
+
+select c.cpf, c.nome_colaborador, c.data_adimissao, ci.nome_cidade from tab_colaborador c
+left join tab_departamento_filial df on df.codigo_dep_filial =  c.fk_codigo_dep_filial
+left join tab_filial f on f.codigo_filial = df.fk_codigo_filial
+left join tab_cidade ci on ci.codigo_cidade = f.fk_codigo_cidade
+order by c.data_adimissao
+limit 5;
+
+questão 9
+
+select f.codigo_filial, ci.nome_cidade, count(*) as quant_colaborador from tab_colaborador c
+left join tab_departamento_filial df on df.codigo_dep_filial =  c.fk_codigo_dep_filial
+left join tab_filial f on f.codigo_filial = df.fk_codigo_filial
+left join tab_cidade ci on ci.codigo_cidade = f.fk_codigo_cidade
+left join tab_departamento d on d.codigo_departamento = df.fk_codigo_departamento
+group by f.codigo_filial , ci.nome_cidade
+order by f.codigo_filial;
+
+questão 10
+
+select d.codigo_departamento, d.nome_departamento, round(avg(c.salario), 2) as media from tab_colaborador c 
+left join tab_departamento_filial df on df.codigo_dep_filial =  c.fk_codigo_dep_filial
+left join tab_departamento d on d.codigo_departamento = df.fk_codigo_departamento
+group by d.codigo_departamento
+order by media;
